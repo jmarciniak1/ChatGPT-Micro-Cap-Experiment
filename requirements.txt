@@ -1,4 +1,8 @@
 numpy==2.3.2
-pandas==2.2.2
+# Pandas: use wheels available for Python 3.13+
+pandas==2.3.2; python_version >= "3.13"
+pandas==2.2.2; python_version < "3.13"
 yfinance==0.2.65
-matplotlib==3.8.4
+# Matplotlib: 3.10.x has wheels for Python 3.13
+matplotlib==3.10.6; python_version >= "3.13"
+matplotlib==3.8.4; python_version < "3.13"

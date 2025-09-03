@@ -13,7 +13,7 @@ def load_portfolio_totals() -> pd.DataFrame:
     chatgpt_totals["Date"] = pd.to_datetime(chatgpt_totals["Date"])
 
     baseline_date = pd.Timestamp("2025-06-27")
-    baseline_equity = 100
+    baseline_equity = 5000
     baseline_row = pd.DataFrame({"Date": [baseline_date], "Total Equity": [baseline_equity]})
     return pd.concat([baseline_row, chatgpt_totals], ignore_index=True).sort_values("Date")
 
@@ -43,15 +43,15 @@ def main() -> None:
     plt.plot(
         chatgpt_totals["Date"],
         chatgpt_totals["Total Equity"],
-        label="ChatGPT ($100 Invested)",
+        label="ChatGPT ($5000 Invested)",
         marker="o",
         color="blue",
         linewidth=2,
     )
     plt.plot(
         sp500["Date"],
-        sp500["SPX Value ($100 Invested)"],
-        label="S&P 500 ($100 Invested)",
+        sp500["SPX Value ($5000 Invested)"],
+        label="S&P 500 ($5000 Invested)",
         marker="o",
         color="orange",
         linestyle="--",
@@ -60,7 +60,7 @@ def main() -> None:
 
     final_date = chatgpt_totals["Date"].iloc[-1]
     final_chatgpt = float(chatgpt_totals["Total Equity"].iloc[-1])
-    final_spx = sp500["SPX Value ($100 Invested)"].iloc[-1]
+    final_spx = sp500["SPX Value ($500 Invested)"].iloc[-1]
 
     plt.text(final_date, final_chatgpt + 0.3, f"+{final_chatgpt - 100:.1f}%", color="blue", fontsize=9)
     plt.text(final_date, final_spx + 0.9, f"+{final_spx - 100:.1f}%", color="orange", fontsize=9)

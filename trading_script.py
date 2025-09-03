@@ -900,7 +900,7 @@ def daily_results(chatgpt_portfolio: pd.DataFrame, cash: float) -> None:
         print(f"Cash balance: ${cash:,.2f}")
         return
 
-    totals["Date"] = pd.to_datetime(totals["Date"])  # tolerate ISO strings
+    totals["Date"] = pd.to_datetime(totals["Date"], format="mixed", errors="coerce") # tolerate ISO strings
     totals = totals.sort_values("Date")
 
     final_equity = float(totals.iloc[-1]["Total Equity"])
